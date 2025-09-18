@@ -90,5 +90,64 @@ namespace IMEX
                 btnBuscar.Enabled = true;
             }
         }
+
+        private void dgvPostos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = dgvPostos.Rows[e.RowIndex];
+                var detalhe = $"Razão Social: {row.Cells["RazaoSocial"].Value}\n" +
+                              $"CNPJ: {row.Cells["Cnpj"].Value}\n" +
+                              $"Endereço: {row.Cells["Endereco"].Value}\n" +
+                              $"Bairro: {row.Cells["Bairro"].Value}\n" +
+                              $"CEP: {row.Cells["Cep"].Value}\n" +
+                              $"Distribuidora: {row.Cells["Distribuidora"].Value}\n" +
+                              $"Classe: {row.Cells["Classe"].Value}";
+
+                MessageBox.Show(detalhe, "Detalhes do Revendedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            if (dgvPostos.DataSource is DataTable table)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "CSV (*.csv)|*.csv";
+                sfd.FileName = "revendedores.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                    {
+                        // cabeçalho
+                        var colunas = table.Columns.Cast<DataColumn>().Select(c => c.ColumnName);
+                        sw.WriteLine(string.Join(";", colunas));
+
+                        // linhas
+                        foreach (DataRow row in table.Rows)
+                        {
+                            var valores = row.ItemArray.Select(v => v?.ToString());
+                            sw.WriteLine(string.Join(";", valores));
+                        }
+                    }
+                    MessageBox.Show("Exportado com sucesso!");
+                }
+            }
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (dgvPostos.DataSource is DataTable table)
+            {
+                string coluna = cmbColuna.SelectedItem?.ToString();
+                string valor = txtFiltro.Text.Trim();
+
+                if (!string.IsNullOrEmpty(coluna) && !string.IsNullOrEmpty(valor))
+                    (dgvPostos.DataSource as DataTable).DefaultView.RowFilter = $"{coluna} LIKE '%{valor}%'";
+                else
+                    (dgvPostos.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            }
+        }
+
     }
 }

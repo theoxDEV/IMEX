@@ -12,6 +12,10 @@
         private System.Windows.Forms.ComboBox cmbUF;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button btnExportar;
+        private System.Windows.Forms.ComboBox cmbColuna;
+        private System.Windows.Forms.TextBox txtFiltro;
+        private System.Windows.Forms.Button btnFiltrar;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -48,10 +52,11 @@
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPostos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPostos.Location = new System.Drawing.Point(12, 58);
+            this.dgvPostos.Location = new System.Drawing.Point(12, 90);
             this.dgvPostos.Name = "dgvPostos";
-            this.dgvPostos.Size = new System.Drawing.Size(760, 350);
+            this.dgvPostos.Size = new System.Drawing.Size(760, 320);
             this.dgvPostos.TabIndex = 0;
+            this.dgvPostos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPostos_CellDoubleClick);
 
             // 
             // txtMunicipio
@@ -92,6 +97,57 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 15);
             this.lblStatus.TabIndex = 4;
+            //
+            // btnExportar
+            //
+            this.btnExportar = new System.Windows.Forms.Button();
+            this.btnExportar.Location = new System.Drawing.Point(400, 20);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(100, 23);
+            this.btnExportar.TabIndex = 5;
+            this.btnExportar.Text = "Exportar CSV";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            //
+            // cmbColuna
+            //
+            this.cmbColuna = new System.Windows.Forms.ComboBox();
+            this.cmbColuna.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbColuna.FormattingEnabled = true;
+            this.cmbColuna.Items.AddRange(new object[] {
+    "RazaoSocial",
+    "Cnpj",
+    "Endereco",
+    "Bairro",
+    "Cep",
+    "Uf",
+    "Municipio",
+    "Distribuidora",
+    "Classe"});
+            this.cmbColuna.Location = new System.Drawing.Point(12, 50);
+            this.cmbColuna.Name = "cmbColuna";
+            this.cmbColuna.Size = new System.Drawing.Size(150, 23);
+            this.cmbColuna.TabIndex = 6;
+            //
+            // txtFiltro
+            //
+            this.txtFiltro = new System.Windows.Forms.TextBox();
+            this.txtFiltro.Location = new System.Drawing.Point(170, 50);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.PlaceholderText = "Digite o valor do filtro...";
+            this.txtFiltro.Size = new System.Drawing.Size(200, 23);
+            this.txtFiltro.TabIndex = 7;
+            //
+            // btnFiltrar
+            //
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.btnFiltrar.Location = new System.Drawing.Point(380, 50);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltrar.TabIndex = 8;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // Form1
             // 
@@ -103,11 +159,16 @@
             this.Controls.Add(this.cmbUF);
             this.Controls.Add(this.txtMunicipio);
             this.Controls.Add(this.dgvPostos);
+            this.Controls.Add(this.btnExportar);
+            this.Controls.Add(this.cmbColuna);
+            this.Controls.Add(this.txtFiltro);
+            this.Controls.Add(this.btnFiltrar);
             this.Name = "Form1";
             this.Text = "Consulta de Revendedores - ANP";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
 
         }
 
