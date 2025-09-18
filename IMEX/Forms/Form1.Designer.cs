@@ -57,7 +57,8 @@
             this.dgvPostos.Size = new System.Drawing.Size(760, 320);
             this.dgvPostos.TabIndex = 0;
             this.dgvPostos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPostos_CellDoubleClick);
-
+            this.dgvPostos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPostos.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
             // 
             // txtMunicipio
             // 
