@@ -28,7 +28,8 @@ namespace IMEX
                 btnBuscar.Enabled = false;
                 lblStatus.Text = "Buscando...";
 
-                var lista = await _service.BuscarAsync(cmbUF.Text, txtMunicipio.Text);
+                // api só aceita cidades em upper case
+                var lista = await _service.BuscarAsync(cmbUF.Text, txtMunicipio.Text.ToUpper());
 
                 if (lista.Count == 0)
                 {
