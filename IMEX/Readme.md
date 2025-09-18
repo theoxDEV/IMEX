@@ -44,7 +44,25 @@ IMEX
 ```
 ---
 
+
 ## ▶️ Como rodar
+
+## 🖥️ Executar a aplicação (sem compilar)
+
+Para facilitar os testes, já deixei disponível um **executável leve** na aba [Releases](https://github.com/theoxDEV/IMEX/releases).
+
+### Passos:
+1. Acesse a página de [Releases](https://github.com/theoxDEV/IMEX/releases).
+2. Baixe o arquivo `IMEX.exe`.
+3. Dê **duplo clique** para rodar.
+
+> ⚠️ Observação: este executável foi gerado como **framework-dependent** para reduzir o tamanho (menor que 25MB).  
+> Isso significa que é necessário ter o **.NET 8 Desktop Runtime** instalado.  
+> Caso não tenha, baixe em: [Download .NET 8 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+
+---
+
+## 🖥️ Executar a aplicação (compilação)
 
 1. Clone o repositório:
    ```bash
